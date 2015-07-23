@@ -4,7 +4,7 @@
     include "includes/adminMsgMap.php";
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
 <head>
     <?php include "includes/templates/adminHead.php"; ?>
 </head>

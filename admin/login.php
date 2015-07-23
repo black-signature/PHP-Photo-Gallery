@@ -4,7 +4,7 @@ if(isset($_POST["SignIn"]) && $_POST["SignIn"] == "SignIn"){
     $pass = "password";
     
     if($_POST["username"] == $admin && $_POST["password"] == $pass){
-        $_SESSION["signed_in"] = true;
+        $_SESSION["signed_in"] = true; 
         header("Location: index.php");
     }
     else{

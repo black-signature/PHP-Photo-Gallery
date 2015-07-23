@@ -17,9 +17,6 @@
  * @license    GPL
  * @version    1.0.0
  **/
-if(basename($_SERVER['PHP_SELF']) == basename(__FILE__)){
-    die('<h1>Direct access is not permitted</h1>');
-}
  
 include "../includes/checkLoggedIn.php";
 include "../../includes/connect.php";
