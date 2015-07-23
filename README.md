@@ -1,4 +1,27 @@
 # PHP-Photo-Gallery
-About : A Simple PHP/MySQL based image gallery for with admin panel.
-Author : Balu John Thomas
-Support : balujohnthomas@gmail.com
+
+Ready to use simple photo gallery using PHP/MySQL with admin support.
+
+## Installation
+
+TODO: Describe the installation process
+
+## Usage
+
+TODO: Write usage instructions
+
+## History
+
+TODO: Write history
+
+## Credits
+
+Balu John Thomas <balujohnthomas@gmail.com>
+
+## License
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
