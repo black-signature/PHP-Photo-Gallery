@@ -6,9 +6,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include "includes/adminHead.php"; ?>
+    <?php include "includes/templates/adminHead.php"; ?>
 </head>
 <body class="gallery-admin-body">
-    <?php include "includes/adminMain.php"; ?>
+    <?php include "includes/templates/adminMain.php"; ?>
 </body>
 </html>
