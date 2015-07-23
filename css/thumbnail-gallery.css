@@ -1,0 +1,25 @@
+/*!
+ * Start Bootstrap - Thumbnail Gallery HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+.thumb {
+    margin-bottom: 30px;
+}
+
+footer {
+    margin: 50px 0;
+}
+
+.hide{display:none;}
+.show{display:block;}
+.gallery-title{margin: 5px 0 0 0;}
+.gallery-admin-body{margin: 30px 0 0 0;}
+.gallery-actions{margin-bottom:20px;}
+.gallery-chooser{margin:0 10px;}
+.create-album-form{margin: 30px 0;}
+.upload-photo-form{margin: 30px 0;}
+.msg-area{padding: 8px;}
+.upload-photo-form input[type="file"]{padding: 0 12px;}
+.upload-progress{margin:10px 0;}
