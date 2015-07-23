@@ -12,7 +12,7 @@ TODO: Write usage instructions
 
 ## History
 
-TODO: Write history
+v 1.0.0
 
 ## Credits
 
