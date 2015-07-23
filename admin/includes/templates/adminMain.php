@@ -1,4 +1,27 @@
 <?php 
+/**
+ * PHP Gallery Admin Main : Template
+ *
+ * PHP Gallery admin header template which holds the main template fragment.
+ *
+ * PHP version 5
+ *
+ * LICENSE: This source file is subject to version 3.01 of the PHP license
+ * that is available through the world-wide-web at the following URI:
+ * http://www.php.net/license/3_01.txt.  If you did not receive a copy of
+ * the PHP License and are unable to obtain it through the web, please
+ * send a note to license@php.net so we can mail you a copy immediately.
+ *
+ * @category   Template
+ * @author     Balu John Thomas <balujohnthomas@gmail.com>
+ * @license    GPL
+ * @version    1.0.0
+ **/
+ 
+if(basename($_SERVER['PHP_SELF']) == basename(__FILE__)){
+    die('<h1>Direct access is not permitted</h1>');
+}
+
 $qry = "SELECT * FROM tbl_gallery ORDER BY AID DESC";
 $res = mysql_query($qry);
 ?>
@@ -7,6 +30,7 @@ $res = mysql_query($qry);
 if(!isset($_GET["act"]) && !$_GET["act"] == "edit"){
 ?>
 <div class="container" id="main_container">
+    <div class="text-right"><a href="logout.php">Logout</a></div>
     <div class="row gallery-actions">
         <div class="col-md-2"><button id="create_gallery" type="submit" class="btn btn-success">Create New Album</button></div>
         <?php 
