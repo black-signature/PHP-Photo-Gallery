@@ -1,4 +1,7 @@
-<?php include "includes/connect.php"; ?>
+<?php 
+    include "includes/checkInstallation.php";
+    include "includes/connect.php"; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

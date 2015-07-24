@@ -1,9 +1,14 @@
 <?php session_start();
+include "includes/checkAdminInstallation.php";
+include "../includes/connect.php";
 if(isset($_POST["SignIn"]) && $_POST["SignIn"] == "SignIn"){
-    $admin = "admin";
-    $pass = "password";
+    $username = $_POST["username"];
+    $password = md5($_POST["password"]);
     
-    if($_POST["username"] == $admin && $_POST["password"] == $pass){
+    $qry = "SELECT id FROM tbl_admin WHERE username = '".$username."' AND password = '".$password."' AND status = 1";
+    $res = mysql_query($qry);
+    
+    if(mysql_num_rows($res) > 0){
         $_SESSION["signed_in"] = true; 
         header("Location: index.php");
     }
