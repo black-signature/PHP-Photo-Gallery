@@ -1,18 +1,17 @@
 # PHP-Photo-Gallery
 
-Ready to use simple photo gallery using PHP/MySQL with admin support.
+- Ready to use simple photo gallery using PHP/MySQL with admin support. 
+- Fully responsive design using bootstrap.
+- Most suited for small websites.
 
 ## Installation
 
-TODO: Describe the installation process
-
-## Usage
-
-TODO: Write usage instructions
+Open index.php in the browser and follow the on-screen instructions to install
 
 ## History
 
-v 1.0.0
+v2.0.0 - Added installer and minor bug-fixes
+v1.0.0 - Basic features
 
 ## Credits
 
