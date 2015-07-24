@@ -1,4 +1,5 @@
 <?php error_reporting(0);
+    include "includes/checkAdminInstallation.php";
     include "includes/checkLoggedIn.php";
     include "../includes/connect.php"; 
     include "includes/adminMsgMap.php";

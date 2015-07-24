@@ -30,4 +30,15 @@ $msgMap["delImgALB"]["true"] = "Image deleted successfully";
 $msgMap["delImgALB"]["false"] = "Error while deleting the image. Please try later";
 $msgMap["delALB"]["true"] = "Album deleted successfully";
 $msgMap["delALB"]["false"] = "Error while deleting the album. Please try later";
+
+//Installer messages
+$msgMap["instSuccess"]["true"] = "Installation successful. Please create an admin user";
+$msgMap["instDBTblFailed"]["false"] = "Oops. An error occurred while creating tables. Please check your DB connection";
+
+$msgMap["inDBNE"]["false"] = "Database doesn't exist";
+$msgMap["inDBConF"]["false"] = "Invalid database access credentials";
+$msgMap["instComplete"]["true"] = "Installation complete. Please click on finish to continue";
+$msgMap["credBlank"]["false"] = "One ore more required fields seems to empty";
+$msgMap["passMismatch"]["false"] = "Password and confirm password doesn't match";
+$msgMap["adminExists"]["false"] = "Username already exists.";
 ?>
