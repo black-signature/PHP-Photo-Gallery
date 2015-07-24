@@ -10,8 +10,8 @@ Open index.php in the browser and follow the on-screen instructions to install
 
 ## History
 
-v2.0.0 - Added installer and minor bug-fixes
-v1.0.0 - Basic features
+- v2.0.0 : Added installer and minor bug-fixes
+- v1.0.0 : Basic features
 
 ## Credits
 
