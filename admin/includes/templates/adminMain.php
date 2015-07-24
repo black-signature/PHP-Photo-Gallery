@@ -73,7 +73,7 @@ if(!isset($_GET["act"]) && !$_GET["act"] == "edit"){
         <div class="col-md-12">
             <form class="form-inline" action="API/galleryFormActions.php" method="POST">
               <div class="form-group">
-                <input type="text" class="form-control" name="album_name" id="album_name" placeholder="Enter album name" />
+                <input type="text" class="form-control" name="album_name" id="album_name" placeholder="Enter album name" required />
                 <input type="hidden" name="form_param" value="create_album" />
               </div>
               <button type="submit" class="btn btn-primary">Create</button>

@@ -27,7 +27,7 @@ $formParam = $_REQUEST["form_param"];
 switch($formParam){
     case "create_album":
         $albumName = $_POST["album_name"];
-        if(isset($albumName)){
+        if(isset($albumName) && $albumName !== ""){
             $qry = "INSERT INTO tbl_gallery(album_name) VALUES('$albumName')";
             if(mysql_query($qry)){
                 mkdir("../../UPLOADS/".$albumName,"0777");
