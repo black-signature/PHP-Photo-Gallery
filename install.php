@@ -1,5 +1,8 @@
 <?php 
-include "../admin/includes/adminMsgMap.php";
+if(file_exists("installed")){
+   die("The app has already been installed successfully. No need to run the installer again. However if you really wanted to re-install, please delete <em>installed</em> file from the root and try again."); 
+}
+include "admin/includes/adminMsgMap.php";
 
 if(isset($_POST["Submit"]) && $_POST["Submit"] == "Next"){
     $dbHost = $_POST["db_host"];
@@ -9,53 +12,58 @@ if(isset($_POST["Submit"]) && $_POST["Submit"] == "Next"){
     
     if(mysql_connect($dbHost, $dbUser, $dbPass)){
         if(mysql_select_db($dbName)){
-            // Create connect.php
-            $connectionFile = fopen("../includes/connect.php", "w");
-            $connection = '<?php $conn = mysql_connect("'.$dbHost.'","'.$dbUser.'","'.$dbPass.'"); if(!$conn){ die("<h1>Could not establish a database connection</h1>"); } else { mysql_select_db("'.$dbName.'"); } ?>';
-            fwrite($connectionFile, $connection);
-            fclose($connectionFile);
-            
-            include "../includes/connect.php";
-            
-            $tableSetupAdmin =  "CREATE TABLE IF NOT EXISTS `tbl_admin` (
-                                  `id` int(8) NOT NULL AUTO_INCREMENT,
-                                  `username` varchar(32) NOT NULL,
-                                  `password` varchar(32) NOT NULL,
-                                  `type` varchar(16) NOT NULL,
-                                  `status` int(8) NOT NULL,
-                                  PRIMARY KEY (`id`)
-                                ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1";
+            // Update connect.php
+            if(chmod("includes/connect.php", 0777)){
+                $connectionFile = fopen("includes/connect.php", "w");
+                $connection = '<?php $conn = mysql_connect("'.$dbHost.'","'.$dbUser.'","'.$dbPass.'"); if(!$conn){ die("<h1>Could not establish a database connection</h1>"); } else { mysql_select_db("'.$dbName.'"); } ?>';
+                fwrite($connectionFile, $connection);
+                fclose($connectionFile);
+                
+                include "includes/connect.php";
+                
+                $tableSetupAdmin =  "CREATE TABLE IF NOT EXISTS `tbl_admin` (
+                                      `id` int(8) NOT NULL AUTO_INCREMENT,
+                                      `username` varchar(32) NOT NULL,
+                                      `password` varchar(32) NOT NULL,
+                                      `type` varchar(16) NOT NULL,
+                                      `status` int(8) NOT NULL,
+                                      PRIMARY KEY (`id`)
+                                    ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1";
 
-            $tableSetupConfig = "CREATE TABLE IF NOT EXISTS `tbl_config` (
-                                  `id` int(8) NOT NULL AUTO_INCREMENT,
-                                  `config_name` varchar(16) NOT NULL,
-                                  `config_value` varchar(16) NOT NULL,
-                                  PRIMARY KEY (`id`)
-                                ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1";
+                $tableSetupConfig = "CREATE TABLE IF NOT EXISTS `tbl_config` (
+                                      `id` int(8) NOT NULL AUTO_INCREMENT,
+                                      `config_name` varchar(16) NOT NULL,
+                                      `config_value` varchar(16) NOT NULL,
+                                      PRIMARY KEY (`id`)
+                                    ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1";
 
-            $tableSetupGallery = "CREATE TABLE IF NOT EXISTS `tbl_gallery` (
-                                  `AID` int(8) NOT NULL AUTO_INCREMENT,
-                                  `CID` int(8) NOT NULL,
-                                  `album_name` varchar(32) NOT NULL,
-                                  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                                  PRIMARY KEY (`AID`)
-                                ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1";
+                $tableSetupGallery = "CREATE TABLE IF NOT EXISTS `tbl_gallery` (
+                                      `AID` int(8) NOT NULL AUTO_INCREMENT,
+                                      `CID` int(8) NOT NULL,
+                                      `album_name` varchar(32) NOT NULL,
+                                      `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                      PRIMARY KEY (`AID`)
+                                    ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1";
 
-            $tableSetupPhotos = "CREATE TABLE IF NOT EXISTS `tbl_photos` (
-                                  `PID` int(8) NOT NULL AUTO_INCREMENT,
-                                  `AID` int(8) NOT NULL,
-                                  `file_name` text NOT NULL,
-                                  `upload_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                                  `cover_status` tinyint(1) NOT NULL DEFAULT '0',
-                                  PRIMARY KEY (`PID`)
-                                ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1";
-            
-            
-            if(mysql_query($tableSetupAdmin) && mysql_query($tableSetupConfig) && mysql_query($tableSetupGallery) && mysql_query($tableSetupPhotos)){
-                header("Location: install.php?s=true&t=instSuccess");
+                $tableSetupPhotos = "CREATE TABLE IF NOT EXISTS `tbl_photos` (
+                                      `PID` int(8) NOT NULL AUTO_INCREMENT,
+                                      `AID` int(8) NOT NULL,
+                                      `file_name` text NOT NULL,
+                                      `upload_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                      `cover_status` tinyint(1) NOT NULL DEFAULT '0',
+                                      PRIMARY KEY (`PID`)
+                                    ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1";
+                
+                
+                if(mysql_query($tableSetupAdmin) && mysql_query($tableSetupConfig) && mysql_query($tableSetupGallery) && mysql_query($tableSetupPhotos)){
+                    header("Location: install.php?s=true&t=instSuccess");
+                }
+                else{
+                    header("Location: install.php?s=true&t=instDBTblFailed");
+                }
             }
             else{
-                header("Location: install.php?s=true&t=instDBTblFailed");
+                header("Location: install.php?s=false&t=chModConn");
             }
         }
         else{
@@ -67,7 +75,7 @@ if(isset($_POST["Submit"]) && $_POST["Submit"] == "Next"){
     }
 }
 else if(isset($_POST["Submit"]) && $_POST["Submit"] == "Next_Create_Admin"){
-    include "../includes/connect.php";
+    include "includes/connect.php";
     
     $admin = $_POST["admin_username"];
     $adminPass = $_POST["admin_password"];
@@ -81,12 +89,19 @@ else if(isset($_POST["Submit"]) && $_POST["Submit"] == "Next_Create_Admin"){
                 $qry = "INSERT INTO tbl_admin(username, password, type, status) VALUES ('".$admin."', '".md5($adminPass)."', 'admin', 1)";
                 if(mysql_query($qry)){
                     //Create installed file..
-                    $installFile = fopen("../installed", "w");
-                    $installationDetails = "Installed on : ".date("d-m-y, h:i:s a")."\n";
-                    fwrite($installFile, $installationDetails);
-                    fclose($installFile);
-                    
-                    header("Location: install.php?s=true&t=instComplete");
+                    $installFile = fopen("installed", "w");
+                    if(chmod("installed", 0777)){
+                        $installationDetails = "Installed on : ".date("d-m-y, h:i:s a")."\n";
+                        fwrite($installFile, $installationDetails);
+                        fclose($installFile);
+                        
+                        chmod("UPLOADS", 0777); //Giving 777 for UPLOADS directory.
+                        
+                        header("Location: install.php?s=true&t=instComplete");
+                    }
+                    else{
+                        header("Location: install.php?s=false&t=chModInst");
+                    }
                 }
             }
             else{
@@ -102,7 +117,7 @@ else if(isset($_POST["Submit"]) && $_POST["Submit"] == "Next_Create_Admin"){
     }
 }
 else if(isset($_POST["Submit"]) && $_POST["Submit"] == "Finish"){
-    header("Location: ../admin/index.php");
+    header("Location: admin/index.php");
 }
 ?>
 <!DOCTYPE html>
@@ -115,7 +130,7 @@ else if(isset($_POST["Submit"]) && $_POST["Submit"] == "Finish"){
     <title>PHP Gallery Installer</title>
 
     <!-- Bootstrap -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -244,8 +259,8 @@ else if(isset($_POST["Submit"]) && $_POST["Submit"] == "Finish"){
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="../js/jquery-2.1.0.min.js"></script>
+    <script src="js/jquery-2.1.0.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
