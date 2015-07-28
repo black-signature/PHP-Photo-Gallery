@@ -1,6 +1,6 @@
 <?php 
 if(file_exists("installed")){
-   die("The app has already been installed successfully. No need to run the installer again. However if you really wanted to re-install, please delete <em>installed</em> file from the root and try again."); 
+   header("Location: admin/index.php");
 }
 include "admin/includes/adminMsgMap.php";
 
