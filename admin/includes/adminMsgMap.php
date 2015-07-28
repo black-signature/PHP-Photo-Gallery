@@ -34,6 +34,8 @@ $msgMap["delALB"]["false"] = "Error while deleting the album. Please try later";
 //Installer messages
 $msgMap["instSuccess"]["true"] = "Installation successful. Please create an admin user";
 $msgMap["instDBTblFailed"]["false"] = "Oops. An error occurred while creating tables. Please check your DB connection";
+$msgMap["chModConn"]["false"] = "Seems like there is not enough permissions to modify <em>includes/connect.php</em>. Please provide CHMOD 777 for <em>includes/connect.php</em> and try again.";
+$msgMap["chModInst"]["false"] = "Seems like there is not enough permissions to modify <em>installed</em> to finish the installation. Please provide CHMOD 777 for <em>installed</em> file and try again.";
 
 $msgMap["inDBNE"]["false"] = "Database doesn't exist";
 $msgMap["inDBConF"]["false"] = "Invalid database access credentials";
