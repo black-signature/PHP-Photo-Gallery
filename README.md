@@ -4,16 +4,21 @@
 - Fully responsive design using bootstrap.
 - Most suited for small websites.
 
+Created by, [Balu John Thomas]
+
+# Introduction
+
+PHP-Photo-Gallery is a ready to use simple photo gallery solution using PHP/MySQL with admin support.
+
 ## Installation
 
 Open index.php in the browser and follow the on-screen instructions to install
 
 ## History
 
-- v2.0.0 : Added installer and minor bug-fixes
-- v1.0.0 : Basic features
+- v1.0 : First launch
 
-## Credits
+## Credits and Support
 
 Balu John Thomas <balujohnthomas@gmail.com>
 
