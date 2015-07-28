@@ -39,8 +39,12 @@
             $albID = $_GET["albID"];
             $albName = $_GET["albName"];
         ?>
-            <div class="col-lg-12">
-                <h1 class="page-header"><?php echo $albName; ?></h1>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-header">
+                        <h1><?php echo $albName; ?></h1> (<a href="index.php">Back to Gallery</a>)
+                    </div>
+                </div>
             </div>
             <?php 
             $qry = "SELECT * FROM tbl_photos WHERE AID=".$albID." ORDER BY PID DESC";
@@ -65,7 +69,7 @@
         else{
         ?>
             <div class="col-lg-12">
-                <h1 class="page-header">Thumbnail Gallery</h1>
+                <h1 class="page-header">Gallery</h1>
             </div>
             <?php 
             $qry = "SELECT * FROM tbl_gallery ORDER BY AID DESC";

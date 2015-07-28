@@ -21,5 +21,7 @@ footer {
 .create-album-form{margin: 30px 0;}
 .upload-photo-form{margin: 30px 0;}
 .msg-area{padding: 8px;}
-.upload-photo-form input[type="file"]{padding: 0 12px;}
+.upload-photo-form input[type="file"]{padding: 5px 12px;}
 .upload-progress{margin:10px 0;}
+
+.gallery-add-select-container{padding-top:7px;}
