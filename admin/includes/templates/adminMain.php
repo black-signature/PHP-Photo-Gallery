@@ -30,13 +30,13 @@ $res = mysql_query($qry);
 if(!isset($_GET["act"]) && !$_GET["act"] == "edit"){
 ?>
 <div class="container" id="main_container">
-    <div class="text-right"><a href="logout.php">Logout</a></div>
+    <div class="text-right"><a href="changePassword.php">Change Password</a> | <a href="logout.php">Logout</a></div>
     <div class="row gallery-actions">
         <div class="col-md-2"><button id="create_gallery" type="submit" class="btn btn-success">Create New Album</button></div>
         <?php 
         if(mysql_num_rows($res) > 0){
         ?>
-        <div class="col-md-4">
+        <div class="col-md-4 gallery-add-select-container">
             Upload Photos into 
             <select id="gallery_chooser" class="gallery-chooser">
                 <option value="null">-- Select Album --</option>

@@ -1,5 +1,5 @@
 <?php 
 if(!file_exists("../installed")){
-    header("Location: ../install/install.php");
+    header("Location: ../install.php");
 }
 ?>

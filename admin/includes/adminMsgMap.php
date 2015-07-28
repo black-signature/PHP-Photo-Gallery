@@ -35,6 +35,7 @@ $msgMap["delALB"]["false"] = "Error while deleting the album. Please try later";
 $msgMap["instSuccess"]["true"] = "Installation successful. Please create an admin user";
 $msgMap["instDBTblFailed"]["false"] = "Oops. An error occurred while creating tables. Please check your DB connection";
 $msgMap["chModConn"]["false"] = "Seems like there is not enough permissions to modify <em>includes/connect.php</em>. Please provide CHMOD 777 for <em>includes/connect.php</em> and try again.";
+$msgMap["chModUploads"]["false"] = "Seems like UPLOADS directory doesn't have permissions to add files. Please provide CHMOD 777 for <em>UPLOADS</em> directory in root.";
 $msgMap["chModInst"]["false"] = "Seems like there is not enough permissions to modify <em>installed</em> to finish the installation. Please provide CHMOD 777 for <em>installed</em> file and try again.";
 
 $msgMap["inDBNE"]["false"] = "Database doesn't exist";
@@ -43,4 +44,6 @@ $msgMap["instComplete"]["true"] = "Installation complete. Please click on finish
 $msgMap["credBlank"]["false"] = "One ore more required fields seems to empty";
 $msgMap["passMismatch"]["false"] = "Password and confirm password doesn't match";
 $msgMap["adminExists"]["false"] = "Username already exists.";
+$msgMap["adminNExists"]["false"] = "Invalid credentials. Please try again.";
+$msgMap["passChanged"]["true"] = "Password changed successfully. <a href='index.php'>Continue</a>";
 ?>

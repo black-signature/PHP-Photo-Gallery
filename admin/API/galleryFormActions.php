@@ -103,5 +103,37 @@ switch($formParam){
             header("Location: ../index.php?s=false&t=delALB");
         }
     break;
+    
+    case "change_password":
+        $userName = $_REQUEST["username"];
+        $oldPass = $_REQUEST["old_password"];
+        $newPass = $_REQUEST["new_password"];
+        $confNewPass = $_REQUEST["confirm_new_password"];
+        
+        if($userName != "" && $oldPass != "" && $newPass != "" && $confNewPass != ""){
+            if($newPass == $confNewPass){
+                $qryCheck = "SELECT id FROM tbl_admin WHERE username = '".$userName."' AND password = '".md5($oldPass)."'";
+                $resCheck = mysql_query($qryCheck);
+                if(mysql_num_rows($resCheck) == 1){
+                    $qry  = "UPDATE tbl_admin SET password = '".md5($newPass)."' WHERE username = '".$userName."' AND status = 1";
+                    if(mysql_query($qry)){
+                        header("Location: ../changePassword.php?s=true&t=passChanged");
+                    }
+                }
+                else{
+                    header("Location: ../changePassword.php?s=false&t=adminNExists");
+                }
+            }
+            else{
+                header("Location: ../changePassword.php?s=false&t=passMismatch");
+            }
+        }
+        else{
+            header("Location: ../changePassword.php?s=false&t=credBlank");
+        }
+    break;
+    
+    default:
+        die("<h1>Invalid Parameters</h1>");
 }
 ?>

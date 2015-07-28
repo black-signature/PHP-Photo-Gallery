@@ -88,20 +88,26 @@ else if(isset($_POST["Submit"]) && $_POST["Submit"] == "Next_Create_Admin"){
             if(mysql_num_rows($resCheck) == 0){
                 $qry = "INSERT INTO tbl_admin(username, password, type, status) VALUES ('".$admin."', '".md5($adminPass)."', 'admin', 1)";
                 if(mysql_query($qry)){
-                    //Create installed file..
-                    $installFile = fopen("installed", "w");
-                    if(chmod("installed", 0777)){
-                        $installationDetails = "Installed on : ".date("d-m-y, h:i:s a")."\n";
-                        fwrite($installFile, $installationDetails);
-                        fclose($installFile);
-                        
-                        chmod("UPLOADS", 0777); //Giving 777 for UPLOADS directory.
-                        
-                        header("Location: install.php?s=true&t=instComplete");
+                    if(chmod("UPLOADS", 0777)){
+                        //Create installed file..
+                        $installFile = fopen("installed", "w");
+                        if(chmod("installed", 0777)){
+                            $installationDetails = "Installed on : ".date("d-m-y, h:i:s a")."\n";
+                            fwrite($installFile, $installationDetails);
+                            fclose($installFile); //DONE..
+                            
+                            header("Location: install.php?s=true&t=instComplete");
+                        }
+                        else{
+                            header("Location: install.php?s=false&t=chModInst");
+                        }
                     }
                     else{
-                        header("Location: install.php?s=false&t=chModInst");
+                        header("Location: install.php?s=false&t=chModUploads");
                     }
+                }
+                else{
+                    header("Location: install.php?s=false&t=inDBConF");
                 }
             }
             else{
