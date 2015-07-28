@@ -47,7 +47,7 @@
                     </div>
                     <input type="hidden" name="form_param" value="change_password" />
                     <button type="submit" name="Submit" value="Submit" class="btn btn-success">Submit &raquo;</button>
-                    <button type="submit" name="Submit" value="Submit" class="btn btn-danger" onclick="history.go(-1);">Cancel</button>
+                    <button type="submit" name="Submit" value="Submit" class="btn btn-danger" onclick="location.href='index.php'">Cancel</button>
                 </form>
             </div>
         </div>
