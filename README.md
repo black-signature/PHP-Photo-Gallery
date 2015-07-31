@@ -3,7 +3,7 @@
 - Ready to use simple photo gallery using PHP/MySQL with admin support. 
 - Fully responsive design using bootstrap.
 - Easily customizable layout using PHP, HTML and CSS.
-- Most suited for small websites, that requires a photo gallery via backend.
+- Most suited for small websites, that requires a photo gallery with backend.
 
 Created by, [Balu John Thomas]
 
